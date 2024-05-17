@@ -23,7 +23,7 @@ class BartRouteInfo(Base):
     hexcolor = Column(String)
     color = Column(String)
     num_stns = Column(Integer)
-    config = Column(JSON)
+    config = Column(String)
 
 
 #  retrieve data from api
