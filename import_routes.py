@@ -4,7 +4,7 @@ from sqlalchemy import create_engine, Column, Integer, String,JSON
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import requests
-# from api_keys import bart_api_key
+from api_keys import bart_api_key
 
 # create engine
 engine = create_engine('postgresql://postgres:postgres@localhost:5433/bart_train_routes')
@@ -27,7 +27,7 @@ class BartRouteInfo(Base):
 
 
 #  retrieve data from api
-response_route_info = requests.get('https://api.bart.gov/api/route.aspx', params={'cmd': 'routeinfo', 'route': 'all', 'key': 'MW9S-E7SL-26DU-VV8V', 'json': 'y'})
+response_route_info = requests.get('https://api.bart.gov/api/route.aspx', params={'cmd': 'routeinfo', 'route': 'all', 'key': bart_api_key, 'json': 'y'})
 data_route_info = response_route_info.json()['root']['routes']['route']
 
 #create table
