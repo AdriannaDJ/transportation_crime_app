@@ -22,9 +22,9 @@ class BartAdvisories(Base):
     time = Column(String)
     message = Column(String)
 
-    # Retrieve data from the BART API
-response = requests.get('https://api.bart.gov/api/bsa.aspx', params={'cmd': 'bsa', 'key': bart_api_key, 'json': 'y'})
-data = response.json()['root']
+# Download the Excel file from the website
+url = 'https://example.com/path/to/excel/file.xlsx'
+response = requests.get(url)
 
 #create table
 Base.metadata.create_all(engine)
