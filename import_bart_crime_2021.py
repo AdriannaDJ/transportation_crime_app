@@ -27,6 +27,9 @@ response = requests.get(url)
 # Load Excel data into a DataFrame
 df = pd.read_excel(response.content)
 
+#convert cit_charge to string
+df['Cit: Charge'] = df['Cit: Charge'].astype(str)
+
 # create table
 Base.metadata.create_all(engine)
 
