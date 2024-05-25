@@ -7,7 +7,7 @@ import requests
 from api_keys import bart_api_key
 
 # create engine
-engine = create_engine('postgresql://postgres:postgres@localhost:5433/bart_train_routes')
+engine = create_engine('postgresql://postgres:postgres@localhost:5432/bart_train_routes')
 
 # declare base
 Base = declarative_base()

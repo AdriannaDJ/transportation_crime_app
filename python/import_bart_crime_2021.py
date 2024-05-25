@@ -15,10 +15,10 @@ class CrimeData(Base):
     __tablename__ = 'bart_crime_report_2021'
 
     id = Column(Integer, primary_key=True)
-    inc_location_of_occurrence = Column(String)
-    inc_occurred_date = Column(String)
-    inc_occurred_time = Column(String)
-    cit_charge = Column(String)
+    location= Column(String)
+    date = Column(String)
+    time = Column(String)
+    charge_description = Column(String)
 
 # Download the Excel file from the website
 url = 'https://www.bart.gov/sites/default/files/docs/2021%20UOF%20data%2020221007_redacted.xlsx'
@@ -40,10 +40,10 @@ session = Session()
 # Iterate over DataFrame rows and insert data into the database
 for index, row in df.iterrows():
     bart_crime_report_2021 = CrimeData(
-        inc_location_of_occurrence = row['Inc: County/Location of occurrence'],
-        inc_occurred_date = row['Inc: Occurred date'],
-        inc_occurred_time = row['Inc: Occurred time'],
-        cit_charge = row['Cit: Charge']
+        location = row['Inc: County/Location of occurrence'],
+        date = row['Inc: Occurred date'],
+        time = row['Inc: Occurred time'],
+        charge_description = row['Cit: Charge']
     )
     session.add(bart_crime_report_2021)
 

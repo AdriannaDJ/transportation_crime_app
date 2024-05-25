@@ -1,24 +1,4 @@
-// // Initialize the map
-// var map = L.map('map').setView([37.7749, -122.4194], 10);
 
-// // Add OpenStreetMap tiles
-// L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-// }).addTo(map);
-
-// var url = 'https://api.bart.gov/api/stn.aspx?cmd=stns&key=MW9S-E7SL-26DU-VV8V&json=y'
-// d3.json(url).then(function(data) {
-//     // Process station data
-//     var stations = data['root']['stations']['station'];
-
-//     // Loop through each station
-//     stations.forEach(function(station) {
-//         // Create a marker for each station
-//         L.marker([station['gtfs_latitude'], station['gtfs_longitude']])
-//             .addTo(map)
-//             .bindPopup(`<b>${station['name']}</b><br>${station['address']}`);
-//     });
-// })
 
 let streetmap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -50,8 +30,8 @@ let map = L.map("map", {
 streetmap.addTo(map);
 // Create an overlays object to add to the layer control.
 let overlays = {
-  "Transfer Areas": layers.TRANSFER,
-    "Blue Line": layers.BLUE,
+  "Transfer Station": layers.TRANSFER,
+   "Blue Line": layers.BLUE,
     "Green Line": layers.GREEN,
     "Orange Line": layers.ORANGE,
     "Red Line": layers.RED,
@@ -178,25 +158,35 @@ d3.json('https://api.bart.gov/api/stn.aspx?cmd=stns&key=MW9S-E7SL-26DU-VV8V&json
       stationAbbr.push(station);
     });
     
-    // console.log(stationAbbr)
+    console.log(stationAbbr)
+    
 
     
-    // function checkExist(stationID){
-    //   if (transferStation.includes(stationID)){
-    //     return true
-    //   } else {
-    //     transferStation.push(stationID)
-    //     return false
-    //   }
-    // }
-    // //create a list for tansfer stations
+    //create a list for tansfer stations
     var transferStation =[]
 
-    // stationAbbr.forEach(function(station){
-    //   checkExist(station);
-    // });
-    
-    // console.log(transferStation)
+
+    // create function to compare lists
+    function compareList (list1,list2){
+      new Set(list1).forEach(function(item){
+        if(list2.includes(item) && !transferStation.includes(item)){
+          transferStation.push(item)
+        }
+      })
+    }
+    compareList(blueLineStations,greenLineStations)
+    compareList(blueLineStations,orangeLineStations)
+    compareList(blueLineStations,redLineStations)
+    compareList(blueLineStations,yellowLineStations)
+    compareList(greenLineStations,orangeLineStations)
+    compareList(greenLineStations,redLineStations)
+    compareList(greenLineStations,yellowLineStations)
+    compareList(orangeLineStations,redLineStations)
+    compareList(orangeLineStations,yellowLineStations)
+    compareList(redLineStations,yellowLineStations)
+
+
+    console.log(transferStation)
 
     
     // Initialize stationStatusCode, which will be used as a key to access the appropriate layers, icons, and station count for the layer group.
@@ -220,6 +210,8 @@ d3.json('https://api.bart.gov/api/stn.aspx?cmd=stns&key=MW9S-E7SL-26DU-VV8V&json
       } else {
         return; // Skip stations that are not in any defined line
       }
+      
+      
 
       // Update the station count
       stationCount[stationColorCode]++;
@@ -233,13 +225,16 @@ d3.json('https://api.bart.gov/api/stn.aspx?cmd=stns&key=MW9S-E7SL-26DU-VV8V&json
       newMarker.addTo(layers[stationColorCode]);
       
       // Optionally bind a popup to the marker with more information
-      newMarker.bindPopup(`<h3>${station['name']}</h3><p>Station Address: ${station['address']}</p>`);
+      newMarker.bindPopup(`<h3>${station['name']}</h3><p>Station Address: ${station['address']}</p><p>Route Color: ${stationColorCode}</p>`);
 
 
 
 
     });
-    // console.log(stationCount)
+
+    
+    
+    console.log(stationCount)
 
   });
 });

@@ -4,6 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import requests
 from api_keys import bart_api_key
+import pandas as pd
 
 # create engine
 engine = create_engine('postgresql://postgres:postgres@localhost:5432/bart_train_routes')
@@ -22,9 +23,10 @@ class BartAdvisories(Base):
     time = Column(String)
     message = Column(String)
 
-# Download the Excel file from the website
-url = 'https://example.com/path/to/excel/file.xlsx'
-response = requests.get(url)
+
+# Retrieve data from the BART API
+response = requests.get('https://api.bart.gov/api/bsa.aspx', params={'cmd': 'bsa', 'key': bart_api_key, 'json': 'y'})
+data = response.json()['root']
 
 #create table
 Base.metadata.create_all(engine)
