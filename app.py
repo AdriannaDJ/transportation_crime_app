@@ -87,11 +87,11 @@ def crime_reports():
     return jsonify(all_crime_reports)
 
 @app.route('/api/v1.0/crime_count_<station_id>')
-def crime_count(station_name):
+def crime_count(station_id):
     # Create our session (link) from Python to the DB
     session=Session(engine)
     results = session.query(bart_crime.charge_description, func.count(bart_crime.id)) \
-                     .filter(bart_crime.location==station_name) \
+                     .filter(bart_crime.id==station_id) \
                      .group_by(bart_crime.charge_description) \
                      .order_by(func.count(bart_crime.id).desc()) \
                      .limit(5) \
