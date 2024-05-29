@@ -1,0 +1,22 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "bart_train_routes",
+            "database": "bart_train_routes",
+            "username": "postgress"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "postgress",
+            "database": "bart_train_routes",
+            "username": "postgress"
+        }
+    ]
+}

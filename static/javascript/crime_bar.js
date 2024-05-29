@@ -3,6 +3,7 @@ var user_selection = d3.select('#selDataset')
 function updateCrime() {
 	console.log(`./api/v1.0/crime_count_${user_selection.property('value')}`)
 	d3.json(`./api/v1.0/crime_count_${user_selection.property('value')}`).then(function (response) {
+		console.log(response)
 		var trace = {
 			'type': 'bar',
 			'y': response.map((crime) => crime['desc']),

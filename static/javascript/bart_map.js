@@ -26,6 +26,9 @@ let map = L.map("map", {
     layers.YELLOW,
   ]
 });
+
+window.BartStationMap = map;
+
 // Add our "streetmap" tile layer to the map.
 streetmap.addTo(map);
 // Create an overlays object to add to the layer control.
@@ -223,7 +226,7 @@ d3.json('https://api.bart.gov/api/stn.aspx?cmd=stns&key=MW9S-E7SL-26DU-VV8V&json
 
       // Add the new marker to the layer group
       newMarker.addTo(layers[stationColorCode]);
-      
+
 
       // Optionally bind a popup to the marker with more information
       newMarker.bindPopup(`<h3>${station['name']}</h3><p>Station Address: ${station['address']}</p><p>Route Color: ${stationColorCode}</p>`);
