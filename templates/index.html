@@ -81,6 +81,15 @@
 
   <script>
     var select_menu = d3.select('#selDataset')
+
+    // Function to update the bar chart
+    function updateBarChart(station_id) {
+    fetch(`/api/v1.0/crime_count_${station_id}`)
+        .then(response => response.json())
+        .then(data => {
+            updateCrime(data);
+        })}
+
     d3.json('./api/v1.0/stations').then(function (response) {
       for (let i = 0; i < response.length; i++) {
         select_menu.append('option')
@@ -92,7 +101,10 @@
         const station_id = select_menu.property('value')
         const station = response.find(station => station['ID'] == station_id)
         window.BartStationMap.setView([station['Latitude'], station['Longitude']], 14);
-      })
+
+        // Update the bar chart with data for the selected station
+        updateBarChart(station_id);
+      });
     })
   </script>
   <!-- javascript for bart map -->
