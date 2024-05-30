@@ -1,7 +1,7 @@
 # Group 3, Project 6 README 
 
 ## Overview/Purpose
-Our project focuses on BART (Bay Area Rapid Transit) station crime data. By organizing crime data by the station each crime/police report occured at, we found we could give riders or potential riders insight into the station they want to depart from or arrive to. The purpose of this is to inform the public of safety concerns both historically and (ideally) in real time. 
+Our project focuses on BART (Bay Area Rapid Transit) station crime and train/station data. By organizing the data by station, for example where each crime report occured at, we found we could give riders or potential riders insight into the station they want to depart from or arrive to. The purpose of this is to inform the public of safety concerns, delays, and additional route information both in real time. 
 
 ## Instructions on Use and Interaction
 
@@ -14,7 +14,8 @@ Additionally, our project uses BART police and transportation data for education
 - https://www.bart.gov/sites/default/files/docs/2021%20UOF%20data%2020221007_redacted.xlsx
 - https://api.bart.gov/docs/overview/index.aspx
 
-## References (Additional Code/Help with Code)
+## References (Additional Code/Help with Code, etc)
 - Class Lecture/Exercises
 - Chat GPT
 - GeeksForGeeks.org
+- https://www.wrm.org/media/k2/items/cache/e2acd849d365015ef08ef5b696dc9e31_XL.jpg (App front page image)
